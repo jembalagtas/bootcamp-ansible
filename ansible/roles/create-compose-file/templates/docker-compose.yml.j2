@@ -2,7 +2,10 @@ version: '2'
 services:
   jenkins:
     container_name: "{{ jenkins_container }}"
+    build: "{{ directory }}/docker/jenkins"
     image: "{{ jenkins_image }}:{{ tag }}"
+    restart: always
+    privileged: true
     ports:
       - "8080:8080"
       - "50000:50000"

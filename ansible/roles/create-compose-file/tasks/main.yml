@@ -25,11 +25,11 @@
     remove_images: local
     remove_orphans: yes
 
-- name: create-compose-file | Build Jenkins Image
-  docker_image:
-    path: "{{ directory }}/docker/jenkins"
-    name: "{{ jenkins_image }}"
-    tag: "{{ tag }}"
+#- name: create-compose-file | Build Jenkins Image
+#  docker_image:
+#    path: "{{ directory }}/docker/jenkins"
+#    name: "{{ jenkins_image }}"
+#    tag: "{{ tag }}"
 
 - name: create-compose-file | Create docker components (docker-compose up)
   docker_service:
