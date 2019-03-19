@@ -1,0 +1,9 @@
+---
+- name: Create Jenkins
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - create-dockerfile-jenkins
+    - create-compose-file
+    

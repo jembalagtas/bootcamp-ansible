@@ -1,0 +1,13 @@
+---
+- name: create-dockerfile-jenkins | Create Docker directory for Jenkins
+  file:
+    state: directory
+    path: ../docker/jenkins
+
+- name: create-dockerfile-sensu | Copy files to Jenkins directory
+  shell: "cp -r ./roles/create-dockerfile-jenkins/files/* ../docker/jenkins/"
+   
+- name: create-dockerfile-sensu | Create Dockerfile for Jenkins
+  template:
+    src: dockerfile-jenkins.j2
+    dest: ../docker/jenkins/Dockerfile

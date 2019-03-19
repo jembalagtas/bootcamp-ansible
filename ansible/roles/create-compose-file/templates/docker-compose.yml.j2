@@ -1,0 +1,10 @@
+version: '2'
+services:
+  jenkins:
+    container_name: "{{ jenkins_container }}"
+    restart: always
+    image: "{{ jenkins_image }}"
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+
