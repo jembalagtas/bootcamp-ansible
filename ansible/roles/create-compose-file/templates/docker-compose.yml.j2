@@ -2,7 +2,6 @@ version: '2'
 services:
   jenkins:
     container_name: "{{ jenkins_container }}"
-    restart: always
     image: "{{ jenkins_image }}:{{ tag }}"
     ports:
       - "8080:8080"
