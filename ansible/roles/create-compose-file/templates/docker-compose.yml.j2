@@ -3,7 +3,7 @@ services:
   jenkins:
     container_name: "{{ jenkins_container }}"
     restart: always
-    image: "{{ jenkins_image }}"
+    image: "{{ jenkins_image }}:{{ tag }}"
     ports:
       - "8080:8080"
       - "50000:50000"
