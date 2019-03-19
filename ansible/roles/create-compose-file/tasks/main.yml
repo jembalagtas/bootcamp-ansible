@@ -2,10 +2,10 @@
 - name: create-compose-file | create docker compose file
   template:
     src: docker-compose.yml.j2
-    dest: ../docker/docker-compose.yml
+    dest: "{{ directory }}/docker/docker-compose.yml"
 
 - name: create-compose-file | check contents
-  shell: "../docker/docker-compose.yml"
+  shell: "{{ directory }}/docker/docker-compose.yml"
   register: compose_file
 
 - name: create-compose-file | display contents
@@ -14,14 +14,14 @@
 
 - name: create-compose-file | Clean docker components (docker-compose down)
   docker_service:
-    project_src: ../docker
+    project_src: "{{ directory }}/docker"
     state: absent
     remove_images: local
     remove_orphans: yes
 
 - name: create-compose-file | Create docker components (docker-compose up)
   docker_service:
-    project_src: ../docker
+    project_src: "{{ directory }}/docker"
   register: createoutput
 
 - debug:
