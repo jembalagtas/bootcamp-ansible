@@ -1,3 +1,3 @@
 #==> JENKINS
 jenkins_container: jenkins
-jenkins_image: bootcamp/jenkins:0.1
+jenkins_image: bootcamp/jenkins

@@ -12,12 +12,24 @@
   debug:
     var: compose_file.stdout_lines
 
+- name: create-compose-file | Docker Login
+  docker_login:
+    username: jembim
+    password: imjemmerz15
+    email: jem.bearer07@gmail.com
+
 - name: create-compose-file | Clean docker components (docker-compose down)
   docker_service:
     project_src: "{{ directory }}/docker"
     state: absent
     remove_images: local
     remove_orphans: yes
+
+- name: create-compose-file | Build Jenkins Image
+  docker_image:
+    path: "{{ directory }}/docker/jenkins"
+    name: "{{ jenkins_image }}"
+    tag: 1.0
 
 - name: create-compose-file | Create docker components (docker-compose up)
   docker_service:
