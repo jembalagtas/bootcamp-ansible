@@ -4,13 +4,13 @@
     state: directory
     path: "{{ directory }}/docker/jenkins"
 
-- name: create-dockerfile-sensu | Copy files to Jenkins directory
+- name: create-dockerfile-jenkins | Copy files to Jenkins directory
   copy:
     src: ./roles/create-dockerfile-jenkins/files/
     dest: "{{ directory }}/docker/jenkins/"
     remote_src: no
    
-- name: create-dockerfile-sensu | Create Dockerfile for Jenkins
+- name: create-dockerfile-jenkins | Create Dockerfile for Jenkins
   template:
     src: dockerfile-jenkins.j2
     dest: "{{ directory }}/docker/jenkins/Dockerfile"

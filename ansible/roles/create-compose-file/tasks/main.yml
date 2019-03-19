@@ -5,7 +5,7 @@
     dest: "{{ directory }}/docker/docker-compose.yml"
 
 - name: create-compose-file | check contents
-  shell: "{{ directory }}/docker/docker-compose.yml"
+  shell: "cat {{ directory }}/docker/docker-compose.yml"
   register: compose_file
 
 - name: create-compose-file | display contents
