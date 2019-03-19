@@ -6,7 +6,7 @@
 
 - name: create-dockerfile-sensu | Copy files to Jenkins directory
   copy:
-    src: ./roles/create-dockerfile-jenkins/files/*
+    src: ./roles/create-dockerfile-jenkins/files/
     dest: "{{ directory }}/docker/jenkins/"
     remote_src: no
    
