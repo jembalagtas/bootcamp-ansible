@@ -1,8 +1,8 @@
 ---
 - name: Create Jenkins
-  hosts: node2
+  hosts: localhost
+  connection: local
   gather_facts: no
   roles:
-    - create-dockerfile-jenkins
-    - create-compose-file
+    - "{{ roles }}"
     
