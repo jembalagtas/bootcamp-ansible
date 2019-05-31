@@ -1,3 +1,5 @@
 #==> JENKINS
 jenkins_container: jenkins
 jenkins_image: bootcamp/jenkins
+tomcat_container: tomcat
+tomcat_image: test-tomcat
