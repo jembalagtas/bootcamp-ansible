@@ -1,9 +1,9 @@
 ---
-- name: Create Jenkins
+- name: Create Nginx
   hosts: localhost
   connection: local
   gather_facts: no
   roles:
-    - create-dockerfile-tomcat
+    - create-dockerfile-nginx
     - create-compose-file
     

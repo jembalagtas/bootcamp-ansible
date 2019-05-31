@@ -1,0 +1,17 @@
+---
+- name: create-dockerfile-nginx | Create Docker directory for nginx
+  file:
+    state: directory
+    path: "{{ directory }}/docker/nginx"
+
+#- name: create-dockerfile-nginx | Copy files to nginx directory
+#  copy:
+#    src: ./roles/create-dockerfile-nginx/files/
+#    dest: "{{ directory }}/docker/nginx/"
+#    mode: 0755
+#    remote_src: no
+   
+- name: create-dockerfile-nginx | Create Dockerfile for nginx
+  template:
+    src: dockerfile-nginx.j2
+    dest: "{{ directory }}/docker/nginx/Dockerfile"
