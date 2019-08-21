@@ -13,23 +13,42 @@
   debug:
     var: compose_file.stdout_lines
 
-- name: create-compose-file | Clean docker components (docker-compose down)
-  docker_compose:
-    project_src: "/dockerNginx"
-    state: absent
-    remove_images: local
-    remove_orphans: yes
-
-#- name: create-compose-file | Build Jenkins Image
-#  docker_image:
-#    path: "/dockerNginx/jenkins"
-#    name: "{{ jenkins_image }}"
-#    tag: "{{ tag }}"
-
-- name: create-compose-file | Create docker components (docker-compose up)
-  docker_compose:
-    project_src: "/dockerNginx"
-  register: createoutput
+- name: Docker Compose Down
+  shell: 'docker rm -f $(docker ps -aq)'
+  args:
+    chdir: /dockerNginx
+  ignore_errors: True
+  register: compose_down
 
 - debug:
-    var: createoutput
+    var: compose_down
+
+- name: Build Docker Image
+  shell: 'docker-compose -f /dockerNginx/docker-compose.yml build'
+  args:
+    chdir: /dockerNginx
+  register: build
+
+- debug:
+    var: build
+
+- name: Docker Compose Up
+  shell: 'docker-compose -f /dockerNginx/docker-compose.yml up -d'
+  args:
+    chdir: /dockerNginx
+  register: output
+
+#- name: create-compose-file | Clean docker components (docker-compose down)
+#  docker_compose:
+#    project_src: "/dockerNginx"
+#    state: absent
+#    remove_images: local
+#    remove_orphans: yes
+
+#- name: create-compose-file | Create docker components (docker-compose up)
+#  docker_compose:
+#    project_src: "/dockerNginx"
+#  register: createoutput
+
+- debug:
+    var: output
