@@ -13,7 +13,7 @@
     var: compose_file.stdout_lines
 
 - name: create-compose-file | Clean docker components (docker-compose down)
-  docker_service:
+  docker_compose:
     project_src: "/dockerNginx"
     state: absent
     remove_images: local
@@ -26,7 +26,7 @@
 #    tag: "{{ tag }}"
 
 - name: create-compose-file | Create docker components (docker-compose up)
-  docker_service:
+  docker_compose:
     project_src: "/dockerNginx"
   register: createoutput
 
