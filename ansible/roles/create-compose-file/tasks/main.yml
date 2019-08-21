@@ -2,38 +2,32 @@
 - name: create-compose-file | create docker compose file
   template:
     src: docker-compose.yml.j2
-    dest: "{{ directory }}/docker/docker-compose.yml"
+    dest: "/dockerNginx/docker-compose.yml"
 
 - name: create-compose-file | check contents
-  shell: "cat {{ directory }}/docker/docker-compose.yml"
+  shell: "cat /dockerNginx/docker-compose.yml"
   register: compose_file
 
 - name: create-compose-file | display contents
   debug:
     var: compose_file.stdout_lines
 
-- name: create-compose-file | Docker Login
-  docker_login:
-    username: jembim
-    password: imjemmerz15
-    email: jem.bearer07@gmail.com
-
 - name: create-compose-file | Clean docker components (docker-compose down)
   docker_service:
-    project_src: "{{ directory }}/docker"
+    project_src: "/dockerNginx"
     state: absent
     remove_images: local
     remove_orphans: yes
 
 #- name: create-compose-file | Build Jenkins Image
 #  docker_image:
-#    path: "{{ directory }}/docker/jenkins"
+#    path: "/dockerNginx/jenkins"
 #    name: "{{ jenkins_image }}"
 #    tag: "{{ tag }}"
 
 - name: create-compose-file | Create docker components (docker-compose up)
   docker_service:
-    project_src: "{{ directory }}/docker"
+    project_src: "/dockerNginx"
   register: createoutput
 
 - debug:

@@ -1,11 +1,8 @@
-version: '2'
-services:
-  nginx:
-    container_name: "{{ nginx_container }}"
-    build: "{{ directory }}/docker/nginx"
-    image: "{{ nginx_image }}:{{ tag }}"
-    restart: always
-    privileged: true
-    ports:
-      - "8080:80"
+nginx:
+  container_name: nginx
+  build: "/dockerNginx"
+  restart: always
+  privileged: true
+  ports:
+    - "8080:80"
 
